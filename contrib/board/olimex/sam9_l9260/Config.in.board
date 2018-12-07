@@ -1,0 +1,12 @@
+config	CONFIG_SAM9_L9260
+	bool "sam9_l9260"
+	select AT91SAM9260
+	select CONFIG_SDRAM
+	select ALLOW_DATAFLASH
+	select DATAFLASHCARD_ON_CS1
+	select ALLOW_CPU_CLK_200MHZ
+	select ALLOW_CRYSTAL_18_432MHZ
+	select ALLOW_BOOT_FROM_DATAFLASH_CS1
+	select SUPPORT_BUS_SPEED_100MHZ
+	help
+	    Use the SAM9-L9260 development board by Olimex Ltd.

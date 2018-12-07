@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------
  *         ATMEL Microcontroller Software Support
  * ----------------------------------------------------------------------------
- * Copyright (c) 2015, Atmel Corporation
+ * Copyright (c) 2006, Atmel Corporation
  *
  * All rights reserved.
  *
@@ -25,48 +25,31 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#ifndef __SAM9_L9260_H__
+#define __SAM9_L9260_H__
 
-#ifndef __CONTRIB_BOARD_H__
-#define __CONTRIB_BOARD_H__
+/*
+ * PMC Settings
+ *
+ * The main oscillator is enabled as soon as possible in the c_startup
+ * and MCK is switched on the main oscillator.
+ * PLL initialization is done later in the hw_init() function
+ */
+#define MASTER_CLOCK		(198656000/2)
+#define	TOP_OF_MEMORY		0x301000
 
-#ifdef CONFIG_VINCO
-#include "vinco.h"
-#endif
+#define PLLA_SETTINGS		0x2060BF09
 
-#ifdef CONFIG_AT91SAM9X5_ARIA
-#include "at91sam9x5_aria.h"
-#endif
+/* Switch MCK on PLLA output PCK = PLLA = 2 * MCK */
+#define MCKR_SETTINGS		((0 << 2) | AT91C_PMC_MDIV_2)
+#define MCKR_CSS_SETTINGS	(AT91C_PMC_CSS_PLLA_CLK | MCKR_SETTINGS)
 
-#ifdef CONFIG_AT91SAM9X5_ARIETTA
-#include "at91sam9x5_arietta.h"
-#endif
+/*
+* DataFlash Settings
+*/
+#define CONFIG_SYS_SPI_CLOCK	AT91C_SPI_CLK
+#define CONFIG_SYS_SPI_MODE	SPI_MODE0
+#define CONFIG_SYS_BASE_SPI	AT91C_BASE_SPI0
+#define CONFIG_SYS_SPI_PCS	AT91C_PIN_PC(11)
 
-#ifdef CONFIG_PICOSAM9G45
-#include "pico_sam9g45.h"
-#endif
-
-#ifdef CONFIG_SAMA5D3_ACQUA
-#include "sama5d3_acqua.h"
-#endif
-
-#ifdef CONFIG_SAMA5D3_STEPHAN
-#include "sama5d3_stephan.h"
-#endif
-
-#ifdef CONFIG_SAMA5D2_ROADRUNNER
-#include "sama5d2_roadrunner.h"
-#endif
-
-#ifdef CONFIG_CORE9G25
-#include "core9g25.h"
-#endif
-
-#ifdef CONFIG_SAMA5D3_LINEA
-#include "sama5d3_linea.h"
-#endif
-
-#ifdef CONFIG_SAM9_L9260
-#include "sam9_l9260.h"
-#endif
-
-#endif
+#endif /* __SAM9_L9260_H__ */

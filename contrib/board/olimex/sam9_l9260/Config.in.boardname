@@ -1,0 +1,2 @@
+config CONFIG_BOARDNAME
+	default "sam9_l9260" if CONFIG_SAM9_L9260
